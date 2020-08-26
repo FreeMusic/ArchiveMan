@@ -1,0 +1,38 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :test do
+  match(type: "adhoc")
+  gym(output_name: "ArchiveTestIPA", # 导出的ipa名字
+             scheme: "ArchiveTest",  # 用哪个scheme打包，关于scheme的使用可参考我的上一篇文章
+             workspace: “ArchiveTest.xcworkspace",
+             configuration: "Release",
+      export_method: "ad-hoc",# export_method 可以根据打包类型进行相应设置。可选的值有：app-store、ad-hoc、development、enterprise
+      export_xcargs: "-allowProvisioningUpdates",
+    output_directory:"/Users/tanyin/Desktop/IPA",# ipa导出目录
+      export_options: { # xcode9一定要加入export_options，配置bundleId和证书名键值对
+        method: "ad-hoc",
+        provisioningProfiles: {
+          "TanYin.Net.ArchiveTest" => "Apple Development: Gaoxiang Wu (UALT29K4UR)",
+        }
+      }
+    )
+    # add actions here: https://docs.fastlane.tools/actions
+  end
+end

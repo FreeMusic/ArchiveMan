@@ -1,0 +1,6 @@
+framework module Pods_ArchiveTest {
+  umbrella header "Pods-ArchiveTest-umbrella.h"
+
+  export *
+  module * { export * }
+}
