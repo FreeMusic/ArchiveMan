@@ -21,6 +21,8 @@
     UIView *view = [[UIView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:view];
     view.backgroundColor = [UIColor redColor];
+    
+    NSLog(@"%@", view);
 }
 
 
